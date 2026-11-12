@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>偵探專題問題清單</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#f7f7f4; --paper:#ffffff; --paper2:#eef1ee;
+--ink:#18201c; --ink2:#3d4a43; --muted:#6b7a71;
+--line:#d8ddd8; --line-strong:#18201c;
+--accent:#b42318; --accent-bg:#fdf0ee;
+--teal:#0f5c4d; --teal-bg:#e6f2ee;
+--amber:#8a5a00; --amber-bg:#fdf3d7;
+--grey-bg:#ecefec;
+--code-bg:#18201c; --code-ink:#e8efe9;
+--shadow:0 1px 2px rgba(24,32,28,.06),0 8px 24px rgba(24,32,28,.06);
+}
+@media (prefers-color-scheme: dark){
+:root{
+--bg:#101312; --paper:#171b19; --paper2:#1e2421;
+--ink:#eef2ee; --ink2:#c3cec6; --muted:#93a198;
+--line:#2c3530; --line-strong:#eef2ee;
+--accent:#ff8a7a; --accent-bg:#2b1a17;
+--teal:#7fd1b9; --teal-bg:#132a24;
+--amber:#f2c14e; --amber-bg:#2a2210;
+--grey-bg:#232825;
+--code-bg:#0b0e0c; --code-ink:#e8efe9;
+--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+a{color:var(--teal);text-underline-offset:3px;word-break:break-all}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px 72px}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:3px double var(--line-strong);padding:34px 0 22px;margin-bottom:0}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.14em;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:12px}
+.kicker b{color:var(--accent);font-weight:600}
+h1{font-family:"Noto Serif TC",serif;font-weight:900;font-size:clamp(2rem,6vw,3.1rem);line-height:1.15;margin:0 0 10px;letter-spacing:.01em}
+.subtitle{font-family:"Noto Serif TC",serif;font-size:clamp(1rem,2.6vw,1.2rem);color:var(--ink2);margin:0 0 16px}
+.lede{max-width:46em;color:var(--ink2);margin:0}
+.lede strong{color:var(--ink)}
+.stamp{display:inline-block;border:2px solid var(--accent);color:var(--accent);font-weight:900;font-size:.82rem;letter-spacing:.12em;padding:4px 12px;transform:rotate(-2deg);border-radius:4px;margin-top:18px;background:var(--paper)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line-strong);background:var(--paper);margin:26px 0 0}
+.stat{padding:14px 16px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat.n{font-family:"Noto Serif TC",serif;font-weight:900;font-size:1.7rem;line-height:1.1}
+.stat.l{font-size:.82rem;color:var(--muted);margin-top:2px}
+@media(max-width:640px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}}
+
+/* ---------- sections ---------- */
+section{margin-top:44px}
+h2{font-family:"Noto Serif TC",serif;font-weight:900;font-size:1.45rem;line-height:1.3;margin:0 0 6px;display:flex;align-items:baseline;gap:12px}
+h2.no{font-family:"IBM Plex Mono",monospace;font-size:.85rem;color:var(--accent);font-weight:600}
+.sec-note{color:var(--muted);margin:0 0 18px;max-width:44em}
+h3{font-family:"Noto Serif TC",serif;font-size:1.08rem;margin:0 0 6px}
+
+.panel{background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);padding:22px}
+.panel.dark{background:var(--code-bg);color:var(--code-ink);border-color:var(--code-bg)}
+.panel.dark a{color:#9adbc6}
+.panel h3{margin-top:0}
+
+/* AI instruction */
+.ai-rules{margin:0;padding-left:1.3em}
+.ai-rules li{margin:7px 0}
+.ai-rules li::marker{color:var(--accent);font-weight:700}
+pre.prompt{white-space:pre-wrap;word-break:break-word;font-family:"IBM Plex Mono",monospace;font-size:.84rem;line-height:1.65;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);padding:16px;margin:16px 0 0;max-height:340px;overflow:auto}
+@media (prefers-color-scheme: light){ pre.prompt{background:#222b26;border-color:#222b26;color:#e8efe9}}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{appearance:none;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);font:inherit;font-weight:700;font-size:.92rem;padding:9px 18px;cursor:pointer;border-radius:6px;min-height:44px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme: dark){.btn.primary{color:#1a0f0d}}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.copied{font-size:.88rem;color:var(--teal);font-weight:700;align-self:center}
+
+/* repo table */
+.repo-table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);font-size:.94rem}
+.repo-table th{ text-align:left;font-size:.8rem;letter-spacing:.06em;color:var(--muted);border-bottom:2px solid var(--line-strong);padding:12px 14px}
+.repo-table td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.repo-table tr:last-child td{border-bottom:0}
+.repo-name{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.86rem}
+@media(max-width:680px){
+.repo-table,.repo-table tbody,.repo-table tr,.repo-table td{display:block;width:100%}
+.repo-table thead{display:none}
+.repo-table tr{border-bottom:2px solid var(--line-strong);padding:8px 0}
+.repo-table td{border-bottom:0;padding:6px 14px}
+.repo-table td::before{content:attr(data-l);display:block;font-size:.74rem;letter-spacing:.06em;color:var(--muted)}
+}
+.ok-list{list-style:none;margin:0;padding:0}
+.ok-list li{padding:10px 0 10px 34px;position:relative;border-bottom:1px dashed var(--line)}
+.ok-list li:last-child{border-bottom:0}
+.ok-list li::before{content:"✓";position:absolute;left:2px;top:10px;width:22px;height:22px;border-radius:50%;background:var(--teal-bg);color:var(--teal);font-weight:900;text-align:center;line-height:22px;font-size:.85rem}
+
+/* filters */
+.toolbar{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px;border-bottom:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.chip{appearance:none;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);font:inherit;font-size:.88rem;font-weight:700;padding:7px 14px;border-radius:999px;cursor:pointer;min-height:40px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.search{width:100%;font:inherit;padding:10px 14px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);border-radius:6px;min-height:44px}
+.count-line{font-size:.88rem;color:var(--muted);margin-top:8px}
+.empty{display:none;padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);background:var(--paper)}
+
+/* issue cards */
+.issue{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--muted);box-shadow:var(--shadow);margin-top:16px}
+.issue.sev-high{border-left-color:var(--accent)}
+.issue.sev-mid{border-left-color:var(--amber)}
+.issue.sev-low{border-left-color:var(--teal)}
+.issue-head{padding:18px 20px 6px}
+.issue-meta{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:8px}
+.id{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.82rem;background:var(--grey-bg);padding:2px 8px;border-radius:4px}
+.badge{font-size:.76rem;font-weight:900;letter-spacing:.05em;padding:3px 9px;border-radius:999px}
+.badge.high{background:var(--accent-bg);color:var(--accent)}
+.badge.mid{background:var(--amber-bg);color:var(--amber)}
+.badge.low{background:var(--teal-bg);color:var(--teal)}
+.tag{font-size:.76rem;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+.issue h3{font-size:1.14rem;line-height:1.45}
+.issue-body{padding:0 20px 18px;color:var(--ink2)}
+.issue-body p{margin:8px 0}
+.issue-body strong{color:var(--ink)}
+.evidence{font-family:"IBM Plex Mono",monospace;font-size:.82rem;background:var(--paper2);border:1px solid var(--line);padding:12px 14px;margin:12px 0;white-space:pre-wrap;word-break:break-word;line-height:1.6}
+details{border-top:1px dashed var(--line);margin-top:12px}
+summary{cursor:pointer;font-weight:700;color:var(--teal);padding:12px 0 4px;min-height:44px;display:flex;align-items:center}
+.fix ol{margin:6px 0 6px;padding-left:1.4em}
+.fix li{margin:6px 0}
+.verify{background:var(--teal-bg);padding:12px 14px;margin-top:12px;font-size:.93rem}
+.verify b{color:var(--teal)}
+code{font-family:"IBM Plex Mono",monospace;font-size:.86em;background:var(--grey-bg);padding:1px 5px;border-radius:3px;word-break:break-all}
+
+/* proposal table */
+.prop-list{list-style:none;margin:0;padding:0;counter-reset:prop}
+.prop-list li{background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);padding:16px 20px;margin-top:12px}
+.prop-list.pid{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--accent);font-weight:600}
+
+/* order */
+.order{list-style:none;margin:0;padding:0;counter-reset:ord}
+.order li{display:flex;gap:16px;padding:16px 0;border-bottom:1px dashed var(--line)}
+.order li:last-child{border-bottom:0}
+.order.num{counter-increment:ord;flex:0 0 42px;height:42px;border:2px solid var(--line-strong);border-radius:50%;font-family:"Noto Serif TC",serif;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:1.05rem;background:var(--paper)}
+.order.num::before{content:counter(ord)}
+.order p{margin:4px 0 0;color:var(--ink2)}
+
+.report-template{font-family:"IBM Plex Mono",monospace;font-size:.85rem;white-space:pre-wrap;word-break:break-word;line-height:1.7}
+footer{margin-top:52px;border-top:3px double var(--line-strong);padding-top:18px;color:var(--muted);font-size:.88rem}
+footer ul{margin:8px 0;padding-left:1.2em}
+.hidden{display:none!important}
+@media print{.toolbar,.btnrow{display:none} details{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+<div class="kicker"><span>案件編號 <b>REVIEW-136</b></span><span>審核基準：Round 136 複查</span><span>複查日期：2026-11-12</span><span>狀態：尚有 15 題未完成</span></div>
+<h1>偵探專題問題清單</h1>
+<p class="subtitle">《雙北漫遊偵探：都會行蹤》— 四個 GitHub 倉庫 ＋ 企劃書，完整問題報告</p>
+<p class="lede">這頁是這個專題的<strong>單一問題來源</strong>。2026-11-12 已照 Round 136 的修正逐題複查：41 題裡<strong>確認修好的 26 題已經從本頁刪除</strong>，本頁只留下還沒修完的 15 題——14 題只修了一半、1 題無法確認。Alan 本人可以照這頁追蹤剩下的進度；<strong>其他協作 AI（例如 agy）請直接讀這一頁，照「給 AI 的指令」一節修復這些剩餘問題</strong>，修完照最下面的格式回報。</p>
+<span class="stamp">複查後 · 尚有 15 題未完成</span>
+
+<div class="stats" role="group" aria-label="審核規模">
+<div class="stat"><div class="n">26</div><div class="l">已確認修好、已從本頁刪除</div></div>
+<div class="stat"><div class="n">15</div><div class="l">本頁剩下的未完成問題</div></div>
+<div class="stat"><div class="n">14</div><div class="l">只修了一半，還要收尾</div></div>
+<div class="stat"><div class="n">1</div><div class="l">無法確認（ISSUE-23）</div></div>
+</div>
+</header>
+
+<!-- 1. AI instructions -->
+<section id="ai" aria-labelledby="ai-h">
+<h2 id="ai-h"><span class="no">§1</span>給讀這頁的 AI：修復指令</h2>
+<p class="sec-note">這一節就是寫給你的。如果你是被 Alan 請來修復的 AI，請先完整讀完本頁，再動手。</p>
+<div class="panel dark">
+<h3>任務規則</h3>
+<ol class="ai-rules">
+<li><strong>修復範圍：</strong>只剩本頁 §3 的 13 個問題（ISSUE-02、08、11、13、14、15、16、17、18、19、20、22、23）與 §4 的企劃書問題（P-02、P-14）。已經從本頁刪除的題目就是複查確認修好的，不要再動。照 §5 的順序做：先救回被刪壞的案件公式，再收尾文件同步與企劃書數字，最後實際打開地圖複查畫面問題。</li>
+<li><strong>不要改玩法：</strong>不要更動案件內容、劇情、科學設定與地圖玩法本身；ISSUE-18 是把被刪掉的公式內容<strong>照原樣補回來</strong>，不是改寫案件。</li>
+<li><strong>不要換引擎：</strong>P-02 只處理閒置套件檔的去留（移除或註明預留），<strong>不要真的重寫成 PixiJS 或 Socket.io</strong>。</li>
+<li><strong>單一版本原則：</strong>凡是要同步的檔案，先確認哪個倉庫的版本最新、最完整，以它為準複製到其他倉庫，並在回報裡寫明你以哪一份為準、依據是什麼。</li>
+<li><strong>每修完一題都要驗證：</strong>每張問題卡下方都有「驗證方式」，照著做完、結果附在回報裡，不能只說「已修改」。</li>
+<li><strong>改完回報格式：</strong>照 §6 的模板回報給 Alan，一題一行，附 commit 連結。</li>
+</ol>
+<pre class="prompt" id="promptText">
+專案：《雙北漫遊偵探：都會行蹤》（六年級獨立研究）
+問題清單已照 Round 136 複查刪掉修好的 26 題，只剩下面 15 題，請照 §5 順序收尾：
+1) ISSUE-18（最優先）：Round 136 清理公式時把 CASE-09、18、19、27、36、42、48、50 的 diy_experiment 公式與數字刪壞了，只剩孤立的「$」與空括號。請從 Round 136 之前的版本把公式內容照原樣補回來，並加強檢查腳本，讓它抓得到這種殘缺符號；
+2) ISSUE-02：shared-data.js 已對齊，但 TECH_IMPLEMENTATION_PLAN.md 仍分叉、rpg 版缺第八節，請以完整版為準同步；
+3) ISSUE-11：COMPLETE_CONVERSATION_CHRONICLE.md 仍分叉，請確認主版本並同步；
+4) P-14：企劃書第 84 項仍寫「3,350+ 輛在線公車」，與實測約 1,706 輛對不上，請改成實測數字或註明統計時間；
+5) P-02：企劃書說法已改，但閒置的 PixiJS／Socket.io／MapLibre 檔案還留在倉庫裡，請決定移除或註明為預留，不要留著沒人知道用途；
+6) ISSUE-08：metro／city 的 server.js 已有友善錯誤訊息，但仍相依兄弟目錄的 core，請把前置條件在 README 與啟動說明補齊，或改掉硬相依；
+7) 地圖畫面（ISSUE-14、15、16、17、19、20、22）：程式已有修正，但還沒實際看過畫面。請實際打開地圖逐題確認，畫面沒問題才算修好，還有問題就繼續修；
+8) ISSUE-23：複查無法確認，請實際打開地圖檢查 3D 藍色方塊是否還浮在下緣被切掉；
+9) ISSUE-13：要等 Alan 提供 Instinct 檔案全文，AI 先不用處理。
+限制：不改玩法與案件內容；不真的換引擎。每題修完照清單頁的「驗證方式」驗證，並照 §6 模板回報。</pre>
+<div class="btnrow">
+<button class="btn primary" id="copyBtn" type="button">複製上面這段指令</button>
+<span class="copied" id="copiedMsg" role="status"></span>
+</div>
+<p style="margin:14px 0 0;font-size:.9rem;opacity:.85">Alan 的用法：把複製的指令貼給其他 AI，或直接把這一頁的網址給它讀，效果一樣——這一頁就是完整的任務說明。</p>
+</div>
+</section>
+
+<!-- 2. overview -->
+<section id="overview" aria-labelledby="ov-h">
+<h2 id="ov-h"><span class="no">§2</span>總覽：一個專案、四個倉庫</h2>
+<p class="sec-note">先講結論：這不是四個不同的遊戲，是同一個專案拆成四個倉庫。很多問題都出在「同一份檔案在四個倉庫各存一份，慢慢就對不起來」。</p>
+<table class="repo-table">
+<thead><tr><th>倉庫</th><th>角色</th><th>建立</th><th>Commit</th></tr></thead>
+<tbody>
+<tr><td data-l="倉庫"><span class="repo-name"><a href="https://github.com/hsiaoyujui114-code/taipei-detective-rpg">taipei-detective-rpg</a></span></td><td data-l="角色">企劃與 50 案件倉庫；企劃書與 50 案全集在這裡</td><td data-l="建立">2026-09-24</td><td data-l="Commit">90</td></tr>
+<tr><td data-l="倉庫"><span class="repo-name"><a href="https://github.com/hsiaoyujui114-code/taipei-metro-detective-rpg">taipei-metro-detective-rpg</a></span></td><td data-l="角色">主地圖系統倉庫</td><td data-l="建立">2026-10-07</td><td data-l="Commit">108</td></tr>
+<tr><td data-l="倉庫"><span class="repo-name"><a href="https://github.com/hsiaoyujui114-code/city-pulse-detective">city-pulse-detective</a></span></td><td data-l="角色"><strong>統一官方試玩入口</strong>，同時是鏡像倉庫</td><td data-l="建立">2026-10-06</td><td data-l="Commit">112</td></tr>
+<tr><td data-l="倉庫"><span class="repo-name"><a href="https://github.com/hsiaoyujui114-code/taipei-detective-core">taipei-detective-core</a></span></td><td data-l="角色">獨立偵探核心引擎，四倉庫中只有它有 <code>src/</code> 程式邏輯</td><td data-l="建立">2026-10-21</td><td data-l="Commit">35</td></tr>
+</tbody>
+</table>
+<p style="margin:14px 0 0;color:var(--ink2)">統一試玩網址：<a href="https://hsiaoyujui114-code.github.io/city-pulse-detective/cyber-realmap.html">city-pulse-detective／cyber-realmap.html</a>（實測可開啟）<br>
+企劃書：<a href="https://hsiaoyujui114-code.github.io/taipei-detective-rpg/proposal.html">taipei-detective-rpg／proposal.html</a>　·　50 案全集：<a href="https://hsiaoyujui114-code.github.io/taipei-detective-rpg/cases.html">taipei-detective-rpg／cases.html</a></p>
+
+<div class="panel" style="margin-top:22px">
+<h3>先說做對的——這些不要改壞</h3>
+<ul class="ok-list">
+<li><strong>核心引擎是真的能跑的程式：</strong>core 有鑑識化驗、推理板評分（S／A／B／F）、NPC 詰問、三軌背包、EcoWallet，實測它的測試 10 個階段全部通過。</li>
+<li><strong>六個 GitHub Pages 網址實測都正常開啟</strong>，統一試玩入口有在運作。</li>
+<li><strong>內容規模扎實：</strong>雙北 41 特區、377 間實體門市、捷運 9 線 131+ 站、四軌交通，50 案分三篇，Round 133 已做過 50 案科學審核與 CASE-01 重建。</li>
+<li><strong>Round 136 修正大部分有效：</strong>四倉庫 2026-11-12 的修正經逐題複查，41 題有 26 題確認修好（已從本頁刪除）；新加的 <code>tests/map-integrity.test.js</code> 實際在 rpg／metro／city 跑過都通過——但它抓不到 ISSUE-18 的公式刪壞，檢查規則還要補強。</li>
+</ul>
+</div>
+</section>
+
+<!-- 3. issues -->
+<section id="issues" aria-labelledby="iss-h">
+<h2 id="iss-h"><span class="no">§3</span>問題清單（剩 13 題）</h2>
+<p class="sec-note">這裡只剩 Round 136 複查後<strong>還沒完全修好</strong>的題目：修好的已經刪掉，只修一半的會在卡片裡註明還剩什麼。嚴重度說明：<strong>高</strong>＝資料已經分叉或功能會壞，先修；<strong>中</strong>＝文件與現況不符、或遲早出事；<strong>低</strong>＝整潔與可維護性。用下面的按鈕篩選，或搜尋關鍵字。</p>
+
+<div class="toolbar">
+<div class="chips" role="group" aria-label="依嚴重度篩選">
+<button class="chip" type="button" data-filter="all" aria-pressed="true">全部 13 題</button>
+<button class="chip" type="button" data-filter="high" aria-pressed="false">嚴重度：高</button>
+<button class="chip" type="button" data-filter="mid" aria-pressed="false">嚴重度：中</button>
+<button class="chip" type="button" data-filter="low" aria-pressed="false">嚴重度：低</button>
+<button class="chip" type="button" data-filter="proposal" aria-pressed="false">跟企劃書有關</button>
+</div>
+<input class="search" id="search" type="search" placeholder="搜尋問題，例如：cases.json、編號、部署…" aria-label="搜尋問題">
+<p class="count-line" id="countLine" role="status"></p>
+</div>
+
+<div id="issueList">
+
+
+<article class="issue sev-high" data-sev="high" data-cat="同步" data-text="TECH_IMPLEMENTATION_PLAN.md 分叉 rpg 缺第八節 shared-data.js 已對齊">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-02</span><span class="badge high">高</span><span class="tag">資料同步</span><span class="tag">rpg</span><span class="tag">只修一半</span></div>
+<h3>shared-data.js 已對齊，但 TECH_IMPLEMENTATION_PLAN.md 仍分叉，rpg 版缺第八節</h3></div>
+<div class="issue-body">
+<p><strong>複查結果（2026-11-12）：</strong>原本的問題——rpg 的 <code>shared-data.js</code> 只有約 38 KB、其他倉庫是約 145 KB 完整版——Round 136 已處理。但同一題的同步還沒做完：<code>TECH_IMPLEMENTATION_PLAN.md</code> 在各倉庫仍是不同版本，rpg 版缺第八節，照 rpg 版文件做事的人會漏掉那一節的內容。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>確認最完整的 TECH_IMPLEMENTATION_PLAN.md 為準（應含第八節），同步到其他倉庫。</li><li>在回報中寫明基準版來源。</li></ol>
+<div class="verify"><b>驗證：</b>各倉庫的 TECH_IMPLEMENTATION_PLAN.md 大小與雜湊一致，且都含有第八節。</div>
+</div></details>
+</div>
+</article>
+
+
+
+
+
+
+<article class="issue sev-mid" data-sev="mid" data-cat="架構" data-text="server.js 兄弟目錄 taipei-detective-core localhost 3000 3001 clone">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-08</span><span class="badge mid">中</span><span class="tag">架構耦合</span><span class="tag">metro · core</span></div>
+<h3>地圖倉庫的 server.js 仍硬引用兄弟目錄 ../taipei-detective-core（已有友善錯誤訊息）</h3></div>
+<div class="issue-body">
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 已補上啟動時的友善錯誤訊息，缺 core 時不再是看不懂的錯誤。但 metro／city 的 server.js 仍然直接相依隔壁目錄的 core——只 clone 一個倉庫還是跑不起來，前置條件也還沒在文件裡講齊。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>README 明寫前置條件：需同時 clone 兩個倉庫並放在同一層目錄，兩個服務（localhost:3000＋3001）都要啟動。</li><li>或改掉硬相依（例如改成設定路徑），並在回報說明採用的做法。</li></ol>
+<div class="verify"><b>驗證：</b>只 clone 地圖倉庫時，啟動會得到清楚的提示而不是不明錯誤；雙倉庫就位時功能正常。</div>
+</div></details>
+</div>
+</article>
+
+
+
+<article class="issue sev-low" data-sev="low" data-cat="同步" data-text="逐字相同 拷貝 game.js cyber-realmap.js AI_HANDOFF COMPLETE_CONVERSATION 單一來源">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-11</span><span class="badge low">低</span><span class="tag">重複拷貝</span><span class="tag">三～四個倉庫</span></div>
+<h3>COMPLETE_CONVERSATION_CHRONICLE.md 仍分叉，共用大檔還沒有單一來源</h3></div>
+<div class="issue-body">
+<p><strong>複查結果（2026-11-12）：</strong><code>proposal.html</code> 三份已同步成 93 項版（原 ISSUE-25 已修好刪除）。但 <code>COMPLETE_CONVERSATION_CHRONICLE.md</code> 在各倉庫仍是不同版本、回合紀錄對不上；<code>game.js</code>、<code>cyber-realmap.js</code>、<code>AI_HANDOFF_PROJECT_SPEC.md</code> 等共用大檔也還沒有明定的主倉庫，改一處、漏三處的漂移風險仍在。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>確認 CHRONICLE 的主版本，同步到其他倉庫。</li><li>在文件裡明定每個共用檔案的「主倉庫」，其他倉庫的副本標註「鏡像，勿直接改」。</li><li>用已新增的 map-integrity 檢查腳本自動比對副本雜湊，CHRONICLE 也要列入比對。</li></ol>
+<div class="verify"><b>驗證：</b>主倉庫對照表寫入 README／交接文件；檢查腳本能抓出任一副本不一致。</div>
+</div></details>
+</div>
+</article>
+
+
+<article class="issue sev-low" data-sev="low" data-cat="資料" data-text="Instinct 連結 Loading 下載 截圖 agy 指令庫">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-13</span><span class="badge low">低</span><span class="tag">待補資料</span><span class="tag">Instinct 連結</span></div>
+<h3>Instinct 指令庫連結的內文無法從公開抓取完整取得，需要 Alan 補檔</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>Alan 提供的 files.instinct.com 連結（標題「給 agy 的修改指令庫」，2026-10-26 建立，公開連結，內含連往 city-pulse 與 metro 兩倉庫的連結），從外部抓取只能看到 Loading 外殼，逐段內文讀不到，所以該文件與本清單有沒有互相矛盾，目前無法核對。2026-11-12 複查四個倉庫，Instinct 檔案的全文仍未收進任何倉庫，本題維持未完成。</p>
+<p><strong>這題要 Alan 做，不是 AI：</strong>請在登入 Instinct 的瀏覽器把該檔案下載或截圖給 Muse，或把分享改為可公開讀取後再給連結。補上之後，Muse 會把比對結果更新進這一頁。</p>
+<details><summary>補檔後要做的事</summary><div class="fix">
+<ol><li>逐段比對 Instinct 指令庫與本清單：有沒有叫 agy 做本清單禁止的事（例如換引擎）。</li><li>矛盾處以本清單為準修訂，或在本頁註明差異與取捨。</li></ol>
+<div class="verify"><b>驗證：</b>比對結論寫回本頁，本題狀態改為已結案。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-high" data-sev="high" data-cat="地圖顯示" data-text="車輛標籤 遮擋 台北車站 忠孝西路 BL-224 R-317 案02 案03 地圖">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-14</span><span class="badge high">高</span><span class="tag">地圖顯示</span><span class="tag">city-pulse · metro</span></div>
+<h3>即時車輛標籤層層蓋住中央台北地圖，道路、站名與案件標記都被遮住</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>13x 初載入、14x「雙北全景」、14.8x 各特區畫面，中央台北被數十條紅色、藍色、橘色長條列車／公車標籤成排重疊蓋住，蓋住忠孝西路、台北車站站名、道路與案件標記；案 02、案 03 的紅色標記被壓在列車標籤與調查員圖示之下。</p>
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 的程式已有對應修正，但只看程式碼不能算修好——還沒有人實際打開地圖確認新畫面。本題保留到實際開地圖複查通過為止；複查時若畫面仍有問題，就繼續修。</p>
+<p><strong>編號註記：</strong>本題的「案 02／案 03」是<strong>示範案編號</strong>（地圖按鈕的編號）：案 02 對應全集 CASE-02、案 03 對應全集 CASE-07；編號對照表已完成，收在企劃書裡。</p>
+<div class="evidence">例：「[BL-224] BL-224（市政府）22 km/h｜收班 19:59」「[R-317] R-317（北車）」
+案 02 在 14.8x 地圖上直接點選時瀏覽器回報「被遮住、無法點」，須改用上方按鈕。</div>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>車輛標籤預設收合或只顯示圖示、限制同時顯示數量、依縮放等級篩選。</li><li>案件標記圖層永遠在車輛標籤之上。</li><li>調查員圖示不要壓在案件標記正上方。</li></ol>
+<div class="verify"><b>驗證：</b>14x 全景與 14.8x 各特區畫面，忠孝西路、台北車站站名清楚可讀；案 02、案 03 標記在地圖上直接點得到。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-high" data-sev="high" data-cat="地圖顯示" data-text="20.5x 2D 街道特寫 圖磚 未載入 NLSC 斑馬線 雙黃線 門牌 橫幅">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-15</span><span class="badge high">高</span><span class="tag">地圖顯示</span><span class="tag">metro</span></div>
+<h3>20.5x「2D 街道特寫」底圖圖磚沒有載入，畫面與宣傳橫幅不符</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>metro 倉庫台北車站館前路一帶（中心 121.517, 25.0465）20.5x 時，底圖圖磚一直沒有出現，畫面只有淡色底、粗棕色長方形道路、淡黃色方格地塊與斜穿地塊的彩色捷運線，完全看不到街道名稱、建築輪廓、斑馬線、雙黃線、門牌；但上方橫幅卻寫「瀝青路面 ✕ 雙黃線 ✕ 斑馬線 ✕ 停止線 ✕ 導盲磚 ✕ 門牌」，實際畫面與宣傳不符；橫幅還蓋住了上方「案 02–案 08」按鈕。</p>
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 的程式已有對應修正（圖磚備援等），但只看程式碼不能算修好——還沒有人實際打開地圖確認新畫面。本題保留到實際開地圖複查通過為止；複查時若畫面仍有問題，就繼續修。</p>
+<p><strong>編號註記：</strong>本題的「案 02–案 08」是<strong>示範案編號</strong>（地圖按鈕的編號），對應全集編號見企劃書裡已完成的編號對照表（例如示範案 03＝全集 CASE-07、示範案 05＝全集 CASE-21）。</p>
+<div class="evidence">橫幅文字：「瀝青路面 ✕ 雙黃線 ✕ 斑馬線 ✕ 停止線 ✕ 導盲磚 ✕ 門牌」
+實際畫面：無街道名稱、建築輪廓、斑馬線、雙黃線、門牌；橫幅蓋住「案 02–案 08」按鈕。</div>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>查明 20.5x 圖磚來源（NLSC 是否提供這個倍率），沒有就改用可用的最高倍率或改畫法。</li><li>橫幅文字改成實際畫面有的東西，沒做到的先拿掉。</li><li>橫幅不要蓋住案件按鈕。</li></ol>
+<div class="verify"><b>驗證：</b>20.5x 畫面能看到街道名稱、斑馬線、雙黃線、門牌（或橫幅已改成實際有的內容）；案 02–08 按鈕點得到。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-mid" data-sev="mid" data-cat="地圖顯示" data-text="特區 跳轉 空白 圖磚 載入 淡水 板橋">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-16</span><span class="badge mid">中</span><span class="tag">地圖顯示</span><span class="tag">city-pulse · metro</span></div>
+<h3>按特區按鈕跳轉後，地圖先整片空白數秒才出現圖磚</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>每次按特區按鈕跳轉（如淡水、板橋），地圖先整片空白數秒，只剩彩色路線、圓點與藍色 3D 方塊，之後圖磚才陸續出現。</p>
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 的程式已有對應修正，但只看程式碼不能算修好——還沒有人實際打開地圖確認新畫面。本題保留到實際開地圖複查通過為止；複查時若畫面仍有問題，就繼續修。</p>
+<p><strong>編號註記：</strong>本地圖頁面上的案件按鈕用的是<strong>示範案編號</strong>，與 50 案全集編號的對應見企劃書裡已完成的編號對照表，避免把示範案編號誤當全集 CASE 編號。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>跳轉時先顯示載入提示，或保留上一張底圖等新圖磚載入再切換。</li><li>預載常用特區圖磚。</li></ol>
+<div class="verify"><b>驗證：</b>連按三個特區跳轉，每次都不出現整片空白（或有明確的載入提示）。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-mid" data-sev="mid" data-cat="地圖顯示" data-text="地標名稱 紅毛城 地熱谷 林家花園 案09 案05 淡水 北投 板橋">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-17</span><span class="badge mid">中</span><span class="tag">地圖顯示</span><span class="tag">city-pulse · metro</span></div>
+<h3>四主場景的地標名稱在地圖上看不到，案 09 標記位置也不是紅毛城本體</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>淡水畫面中央只有「淡水金色水岸公園」綠圈、調查員圖示與黑色圖示疊在一起，案 09 紅色標記被壓在下面幾乎看不到，「紅毛城」四個字沒出現在畫面；北投畫面沒有「地熱谷」文字標示與對應案件標記，只有霧面圖示寫「迷霧覆蓋・需實地親臨」；板橋畫面沒有「林家花園／林本源園邸」文字標示，案 05 紅色標記被「新板特區府中商圈 6 門市」綠色長條與列車標籤壓住，只露出一小部分。</p>
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 的程式已有對應修正（地標名稱已寫入等），但只看程式碼不能算修好——還沒有人實際打開地圖確認新畫面。本題保留到實際開地圖複查通過為止；複查時若畫面仍有問題，就繼續修。</p>
+<p><strong>注意：</strong>案 09 簡報地址是淡水區中正路 65 號（金色水岸渡船頭），座標在河岸，與地址相符，但與紅毛城不是同一地點，不要誤以為案 09 標記就是紅毛城。</p>
+<p><strong>編號註記：</strong>本題的「案 09／案 05」是<strong>示範案編號</strong>（地圖按鈕的編號）：案 09 對應全集 CASE-06、案 05 對應全集 CASE-21；編號對照表已完成，收在企劃書裡。舉例：「案 09」在全集是「士林科教館鏡面迷宮消失的雷射筆案」，不是淡水案；「案 05」在全集是「大稻埕百年中藥鋪消失的人蔘」，不是板橋林家花園——只看編號很容易對錯案。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>四主場景的地標名稱直接寫在地圖上對應位置。</li><li>釐清案 09 標記到底代表渡船頭還是紅毛城，名稱與位置對齊。</li><li>案件標記不要被商圈、公園標籤壓住。</li></ol>
+<div class="verify"><b>驗證：</b>四個特區畫面都看得到地標名稱；案 05、案 09 標記清楚可見、點得到；案 09 的名稱與位置一致。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-high" data-sev="high" data-cat="內容錯誤" data-text="diy_experiment 公式 被刪 殘缺 CASE-09 CASE-18 CASE-19 CASE-27 CASE-36 CASE-42 CASE-48 CASE-50 Round 136">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-18</span><span class="badge high">高</span><span class="tag">內容錯誤</span><span class="tag">cases.json</span><span class="tag">修過頭，要補回</span></div>
+<h3>修 ISSUE-18 時刪過頭：8 個案件的 diy_experiment 公式被刪壞，只剩孤立的「$」</h3></div>
+<div class="issue-body">
+<p><strong>複查結果（2026-11-12）：</strong>原本的問題——案 02 簡報的 LaTeX 公式顯示成亂碼——Round 136 已清掉。但清理時把另外 8 個案件的數學內容也一起刪掉了：CASE-09、18、19、27、36、42、48、50 的 <code>diy_experiment</code> 文字裡只剩孤立的 <code>$</code> 符號和空括號，公式跟數字都不見了。而且新加的 map-integrity 檢查腳本抓不到這種刪壞，通過了也沒發現。</p>
+<div class="evidence">受損案件：CASE-09、CASE-18、CASE-19、CASE-27、CASE-36、CASE-42、CASE-48、CASE-50
+受損欄位：diy_experiment（只剩孤立的「$」與空括號，公式與數字消失）</div>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>從 Round 136 之前的版本（git 歷史）把這 8 案 diy_experiment 的公式與數字<strong>照原樣補回來</strong>——不是把殘缺符號再刪乾淨就算了。</li><li>補回後同步三份 cases.json，保持內容一致。</li><li>加強檢查腳本：diy_experiment 出現孤立 <code>$</code>、空括號或公式殘缺時要報錯。</li></ol>
+<div class="verify"><b>驗證：</b>8 案的 diy_experiment 文字完整可讀、公式與數字都在；故意留一個孤立 <code>$</code> 時，檢查腳本要能報錯。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-mid" data-sev="mid" data-cat="版面" data-text="按鈕 超出 1920 被切 石碇 坪林 三芝 案10">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-19</span><span class="badge mid">中</span><span class="tag">版面</span><span class="tag">city-pulse · metro</span></div>
+<h3>最上方三排按鈕超出 1920 寬度被切掉，後面的按鈕看不到、點不到</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>1920 寬視窗下，特區列只顯示到「石碇特區」就被截斷，後面的坪林、三芝等按鈕看不到；案件列「案 10 溶液的溶解度與結晶」在右緣被切掉；門市篩選列「10 大示範案件」也在右緣被切掉。</p>
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 已把按鈕列改成可捲動，但還沒有人實際打開地圖確認新畫面。本題保留到實際開地圖複查通過為止；複查時若畫面仍有問題，就繼續修。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>三排按鈕改成可橫向捲動、換行或收合選單，保證所有按鈕都點得到。</li></ol>
+<div class="verify"><b>驗證：</b>1920 寬視窗下三列所有按鈕都看得到、點得到；視窗縮小到 1366 寬也一樣。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-mid" data-sev="mid" data-cat="版面" data-text="底部提示列 重疊 被切 20.5x">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-20</span><span class="badge mid">中</span><span class="tag">版面</span><span class="tag">city-pulse · metro</span></div>
+<h3>底部提示列文字重疊、下半部被切掉，20.5x 時三行全疊在一起無法閱讀</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>兩個倉庫、每個特區都一樣，底部提示列兩行文字疊在一起、超出黑底列高度，第二行「物與附近巷弄街道」「真實巷弄門牌」等字只有上半部看得到、下半部被切掉；20.5x 時三行文字完全疊在一起。</p>
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 的程式已有對應修正，但還沒有人實際打開地圖確認新畫面。本題保留到實際開地圖複查通過為止；複查時若畫面仍有問題，就繼續修。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>提示列高度隨行數自動長高，或改成單行輪播、字縮小一點，保證每行都完整看得到。</li></ol>
+<div class="verify"><b>驗證：</b>各特區與 20.5x 畫面，底部提示每行字都完整可讀、不重疊。</div>
+</div></details>
+</div>
+</article>
+
+
+<article class="issue sev-low" data-sev="low" data-cat="版面" data-text="左側遙測面板 斷行 單字折行 GPS MRT NLSC">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-22</span><span class="badge low">低</span><span class="tag">版面</span><span class="tag">city-pulse · metro</span></div>
+<h3>左側遙測面板長句斷行，單字被折到下一行</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>兩個倉庫都一樣，窄面板塞不下長句，「即時公車 GPS LIVE: 1706 輛（官方 GPS）+ 0 輛（班距模擬）」「捷運推算列車 MRT: 84 列（看板推算／排程）」「圖資來源 SOURCE: 臺灣通用電子地圖（NLSC 繁中街道全圖）」等每一行都會在中間斷開，「輛」「排程」「圖」等字被單獨折到下一行。</p>
+<p><strong>複查結果（2026-11-12）：</strong>Round 136 的程式已有對應修正，但還沒有人實際打開地圖確認新畫面。本題保留到實際開地圖複查通過為止；複查時若畫面仍有問題，就繼續修。</p>
+<div class="evidence">「即時公車 GPS LIVE: 1706 輛（官方 GPS）+ 0 輛（班距模擬）」
+「捷運推算列車 MRT: 84 列（看板推算／排程）」
+「圖資來源 SOURCE: 臺灣通用電子地圖（NLSC 繁中街道全圖）」</div>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>面板加寬、字縮小，或改寫成短句（數字一行、說明放下一行）。</li></ol>
+<div class="verify"><b>驗證：</b>左側面板每一行都完整可讀，沒有單字被折到下一行。</div>
+</div></details>
+</div>
+</article>
+
+<article class="issue sev-low" data-sev="low" data-cat="地圖顯示" data-text="3D建築 藍色方塊 浮在下緣 被切 淡水 板橋 北投">
+<div class="issue-head"><div class="issue-meta"><span class="id">ISSUE-23</span><span class="badge low">低</span><span class="tag">地圖顯示</span><span class="tag">city-pulse · metro</span></div>
+<h3>3D 建築藍色方塊浮在畫面下緣、部分被切掉，看起來像通用方塊</h3></div>
+<div class="issue-body">
+<p><strong>問題：</strong>淡水、板橋、北投畫面底部都有一排藍色長方塊，浮在畫面最下緣、部分被切掉，看起來像通用方塊而非對應的建築外形。</p>
+<p><strong>複查結果（2026-11-12）：</strong>這一題<strong>無法確認</strong>：Round 136 的程式裡找不到對應的修正證據。請實際打開地圖檢查——方塊仍被切就照下面修；若已沒問題，也要附畫面證據回報，才能把本題刪掉。</p>
+<details><summary>修復方式與驗證</summary><div class="fix">
+<ol><li>3D 方塊對齊實際建築位置與外形，或先拿掉、等做好再上。</li><li>不要讓方塊浮在畫面邊緣被切掉。</li></ol>
+<div class="verify"><b>驗證：</b>各特區畫面底部的 3D 建築與實際建築對得上，沒有方塊浮在邊緣被切掉。</div>
+</div></details>
+</div>
+</article>
+
+
+
+</div>
+<div class="empty" id="emptyMsg">沒有符合條件的問題，換個關鍵字試試。</div>
+</section>
+
+<!-- 4. proposal -->
+<section id="proposal" aria-labelledby="prop-h">
+<h2 id="prop-h"><span class="no">§4</span>企劃書本身的問題（剩 P-02、P-14）</h2>
+<p class="sec-note">企劃書（<a href="https://hsiaoyujui114-code.github.io/taipei-detective-rpg/proposal.html">proposal.html</a>，位於 taipei-detective-rpg）原本查出 16 個問題，Round 136 複查後有 14 個確認修好、已從本節刪除，只剩下面 2 個只修了一半。</p>
+<ol class="prop-list">
+<li><span class="pid">P-02</span><span class="badge mid">中</span><h3>企劃書說法已改，但閒置的 PixiJS／Socket.io／MapLibre 檔案還留在倉庫裡沒處理</h3><p style="margin:4px 0 0;color:var(--ink2)"><strong>複查結果（2026-11-12）：</strong>企劃書的技術說法已改成「現況（自寫 Canvas／<code>ws</code>）＋未來規劃」，這部分修好了。還剩的是檔案本身：server.js 沒有 <code>"socket.io"</code> 字樣、game.js／cyber-realmap.js 沒有 PixiJS／PIXI 字樣，程式完全沒用到這些套件，但 PixiJS、Socket.io、MapLibre 的檔案還留在倉庫裡（部分還被 index.html 載入），沒人決定要刪還是留。</p><p style="margin:4px 0 0;color:var(--ink2)"><strong>修法：</strong>二選一並在回報說明理由：不用就移除檔案與載入引用；要留就註明為預留、給誰用。<strong>驗證：</strong>倉庫裡不再有「留著但沒人知道用途」的套件檔；移除後試玩入口功能不變。</p></li>
+<li><span class="pid">P-14</span><span class="badge low">低</span><h3>企劃書第 84 項的在線公車數字仍寫「3,350+ 輛」，與實測約 1,706 輛對不上</h3><p style="margin:4px 0 0;color:var(--ink2)"><strong>複查結果（2026-11-12）：</strong>本題的門市（377 間）與公車路線（1,036 條）數字已修正。還剩一處：第 84 項仍寫「3,350+ 輛在線公車」，但地圖面板 2026-11-11 實測是 1,706 輛官方 GPS，兩邊差了快一倍。</p><p style="margin:4px 0 0;color:var(--ink2)"><strong>修法：</strong>第 84 項改成實測數字，或註明統計時間與口徑（例如「尖峰時段約 ＿ 輛」並附實測依據）。<strong>驗證：</strong>企劃書第 84 項的數字與同時間實測面板對得上。</p></li>
+</ol>
+</section>
+
+<!-- 5. order -->
+<section id="order" aria-labelledby="ord-h">
+<h2 id="ord-h"><span class="no">§5</span>建議修復順序（由易到難）</h2>
+<p class="sec-note">照這個順序做，前面的都是低風險、不動玩法的修正；越後面越需要寫程式與測試。</p>
+<div class="panel">
+<ol class="order">
+<li><span class="num" aria-hidden="true"></span><div><h3>先救回被刪壞的公式（ISSUE-18）</h3><p>最優先：這是 Round 136 修出來的內容損傷。把 CASE-09、18、19、27、36、42、48、50 的 diy_experiment 公式與數字照原樣補回，並加強檢查腳本，讓它抓得到殘缺符號。</p></div></li>
+<li><span class="num" aria-hidden="true"></span><div><h3>收尾文件同步（ISSUE-02、11）</h3><p>TECH_IMPLEMENTATION_PLAN.md 與 COMPLETE_CONVERSATION_CHRONICLE.md 以最完整版本為準同步，rpg 版 TECH 計畫要補回第八節；共用檔案的主倉庫一併定清楚。</p></div></li>
+<li><span class="num" aria-hidden="true"></span><div><h3>修企劃書剩下的兩題（P-14、P-02）</h3><p>P-14 把第 84 項的在線公車數字改成與實測對得上；P-02 決定閒置的 PixiJS／Socket.io／MapLibre 檔案移除或註明預留。</p></div></li>
+<li><span class="num" aria-hidden="true"></span><div><h3>補齊雙倉庫前置條件（ISSUE-08）</h3><p>server.js 已有友善錯誤訊息；把「需同時 clone 兩倉庫並排、雙服務啟動」寫進 README 與啟動說明，或改掉硬相依。</p></div></li>
+<li><span class="num" aria-hidden="true"></span><div><h3>實際打開地圖複查畫面（ISSUE-14、15、16、17、19、20、22、23）</h3><p>這八題程式多半已有修正，缺的是畫面證據。逐題打開地圖確認：沒問題就附畫面回報結案，還有問題就繼續修；ISSUE-23 要特別看 3D 藍色方塊是否還被切。</p></div></li>
+</ol>
+<p style="margin:14px 0 0;color:var(--muted);font-size:.92rem">另外，ISSUE-13（Instinct 補檔）不在這五步裡：那題要等 Alan 提供檔案，隨時可以插入。</p>
+</div>
+</section>
+
+<!-- 6. report back -->
+<section id="report" aria-labelledby="rep-h">
+<h2 id="rep-h"><span class="no">§6</span>修完怎麼回報</h2>
+<p class="sec-note">修復的 AI 請照下面格式回報給 Alan（用 Gmail 或原對話都行），Alan 會再請 Muse 對照這一頁複查，通過後把該題從本頁刪除。</p>
+<div class="panel">
+<p class="report-template">專案：雙北漫遊偵探（基準 Round 136 複查）
+ISSUE-__／P-__：已修／未修（原因）
+　基準版本：以＿＿倉庫的＿＿檔案為準
+　改動檔案：＿＿（附 commit 連結）
+　驗證結果：照清單的驗證方式做了＿＿，結果＿＿
+（每題一段，本頁剩下的 15 題全列；地圖畫面題要附實際畫面）</p>
+<div class="btnrow">
+<button class="btn" id="copyTplBtn" type="button">複製回報模板</button>
+<span class="copied" id="copiedTplMsg" role="status"></span>
+</div>
+</div>
+</section>
+
+<footer>
+<p><strong>資料來源與基準：</strong>本頁最初來自 Muse 於 2026-11-11 對四個倉庫逐檔審核的結果（基準 Round 133）；2026-11-12 已照 Round 136 的修正逐題複查，確認修好的 26 題（ISSUE-01、03、04、05、06、07、09、10、12、21、24、25 與 P-01、03、04、05、06、07、08、09、10、11、12、13、15、16）已從本頁刪除，本頁只剩未完成的 15 題。</p>
+<ul>
+<li>統一試玩：<a href="https://hsiaoyujui114-code.github.io/city-pulse-detective/cyber-realmap.html">https://hsiaoyujui114-code.github.io/city-pulse-detective/cyber-realmap.html</a></li>
+<li>企劃書：<a href="https://hsiaoyujui114-code.github.io/taipei-detective-rpg/proposal.html">https://hsiaoyujui114-code.github.io/taipei-detective-rpg/proposal.html</a></li>
+<li>50 案全集：<a href="https://hsiaoyujui114-code.github.io/taipei-detective-rpg/cases.html">https://hsiaoyujui114-code.github.io/taipei-detective-rpg/cases.html</a></li>
+</ul>
+<p>更新方式：Alan 用 Gmail（主旨以 Muse 開頭）告訴 Muse 新的審核或修復結果，Muse 就更新這一頁，網址不變。</p>
+</footer>
+</div>
+
+<script>
+(function(){
+var issues = Array.prototype.slice.call(document.querySelectorAll('.issue'));
+var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+var search = document.getElementById('search');
+var countLine = document.getElementById('countLine');
+var emptyMsg = document.getElementById('emptyMsg');
+var filter = 'all';
+
+function apply(){
+var q = (search.value || '').trim().toLowerCase();
+var shown = 0;
+issues.forEach(function(el){
+var okF;
+if(filter==='all'){ okF = true; }
+else if(filter==='proposal'){ okF = el.textContent.indexOf('企劃書')>-1; }
+else { okF = el.getAttribute('data-sev')===filter; }
+var hay = (el.textContent + ' ' + (el.getAttribute('data-text')||'')).toLowerCase();
+var okQ =!q || hay.indexOf(q)>-1;
+var show = okF && okQ;
+el.classList.toggle('hidden',!show);
+if(show) shown++;
+});
+emptyMsg.style.display = shown===0? 'block': 'none';
+countLine.textContent = '目前顯示 ' + shown + ' / ' + issues.length + ' 題';
+}
+chips.forEach(function(chip){
+chip.addEventListener('click', function(){
+chips.forEach(function(c){ c.setAttribute('aria-pressed','false');});
+chip.setAttribute('aria-pressed','true');
+filter = chip.getAttribute('data-filter');
+apply();
+});
+});
+search.addEventListener('input', apply);
+apply();
+
+function copyText(text, msgEl, doneText){
+function done(){ msgEl.textContent = doneText; setTimeout(function(){ msgEl.textContent='';}, 2600);}
+if(navigator.clipboard && navigator.clipboard.writeText){
+navigator.clipboard.writeText(text).then(done, function(){ fallback();});
+} else { fallback();}
+function fallback(){
+var ta = document.createElement('textarea');
+ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+document.body.appendChild(ta); ta.select();
+try{ document.execCommand('copy'); done();}catch(e){ msgEl.textContent='複製失敗，請長按選取文字手動複製。';}
+document.body.removeChild(ta);
+}
+}
+document.getElementById('copyBtn').addEventListener('click', function(){
+copyText(document.getElementById('promptText').textContent, document.getElementById('copiedMsg'), '已複製，貼給其他 AI 就可以開始修。');
+});
+document.getElementById('copyTplBtn').addEventListener('click', function(){
+copyText(document.querySelector('.report-template').textContent, document.getElementById('copiedTplMsg'), '模板已複製。');
+});
+})();
+</script>
+</body>
+</html>
